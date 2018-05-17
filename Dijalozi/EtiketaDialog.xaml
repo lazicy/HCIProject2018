@@ -1,0 +1,64 @@
+﻿<Window x:Class="HCI2018PZ4._3EURA78_2015.Dijalozi.EtiketaDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        
+        xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Dijalozi"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Napravi novu etiketu" Height="280" Width="420" ResizeMode="NoResize">
+    <Border Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel>
+                    
+                    <TextBlock FontWeight="Bold">Oznaka etikete:</TextBlock>
+                    <TextBox Name="id" Text="{Binding Path=Id}" Padding="2" Margin="0 2 0 0"></TextBox>
+                     
+                    <TextBlock Text="Boja:" Margin="0 5 0 0"/>
+                    <xctk:ColorPicker SelectedColor="{Binding Path=Boja}" Name="colorPicker" ></xctk:ColorPicker>
+
+                    <!--- 
+                    <ComboBox Margin="0 2 0 0">
+                        
+                        <ComboBoxItem FontWeight="Bold" Background="Red" Foreground="White">Crvena</ComboBoxItem>
+                        <ComboBoxItem FontWeight="Bold" Background="Orange" Foreground="White">Narandžasta</ComboBoxItem>
+                        <ComboBoxItem FontWeight="Bold" Background="Yellow" Foreground="DarkGray">Žuta</ComboBoxItem>
+                        <ComboBoxItem FontWeight="Bold" Background="Green" Foreground="White">Zelena</ComboBoxItem>
+                        <ComboBoxItem FontWeight="Bold" Background="Blue" Foreground="White">Plava</ComboBoxItem>
+                        <ComboBoxItem FontWeight="Bold" Background="Purple" Foreground="White">Ljubičasta</ComboBoxItem>
+
+                        
+                    </ComboBox>
+-->
+                    <TextBlock Margin="0 5 0 0" >Opis:</TextBlock>
+                    <TextBox Name="opis" Text="{Binding Path=Opis}" Padding="2" Margin="0 2 0 0" Height="80"></TextBox>
+
+
+                </StackPanel>
+
+            </Grid>
+            
+            
+            
+            <!-- Buttons -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnEdit" Click="btnEdit_Click" Grid.Column="1" Margin="0 0 2.5 0">Izmeni</Button>
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Grid.Column="1" Margin="0 0 2.5 0">Dodaj</Button>
+                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="2" Margin="2.5 0 0 0">Otkaži</Button>
+
+            </Grid>
+        </Grid>
+        
+    </Border>
+</Window>

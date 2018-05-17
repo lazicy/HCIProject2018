@@ -1,0 +1,233 @@
+﻿<Window x:Class="HCI2018PZ4._3EURA78_2015.Dijalozi.VrstaDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Dijalozi"
+        mc:Ignorable="d"
+        Title="Napravi novu vrstu" Height="630" Width="420" ResizeMode="NoResize" >
+
+
+    <Border Padding="13">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="96*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Sve komponente forme se nalaze unutar 0-tog grida -->
+            <Grid Grid.Row="0">
+
+                <StackPanel>
+                   
+                    <!-- Oznaka -->
+                    <TextBlock Text="Oznaka vrste:" FontWeight="Bold"/>
+                    <TextBox Name="id" Text="{Binding Path=Id}"  Padding="2" Margin="0 2 0 0"/>
+
+                    <!-- Naziv-->
+                    <TextBlock Text="Naziv:" Margin=" 0 5 0 0"/>
+                    <TextBox Name="naziv" Text="{Binding Path=Naziv}" Padding="2" Margin="0 2 0 0"/>
+
+                    <!-- Opis -->
+                    <TextBlock Text="Opis:" Margin=" 0 5 0 0"/>
+                    <TextBox Name="opis" Text="{Binding Path=Opis}" Padding="2" Margin="0 2 0 0" Height="60"/>
+
+                    <!-- Tip, Ikonica -->
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Tip:" Margin="0 1 0 0"/>
+                        </Grid>
+                            
+                        <Grid Grid.Column="1">
+                            <ComboBox x:Name="tip" ItemsSource="{Binding Path=Tipovi}" SelectedItem="{Binding Path=Tip}" DisplayMemberPath="Naziv" Margin="0 0 0 0">
+                               
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <TextBlock Text="Ikonica:" Margin="20 1 0 0"/>
+                        </Grid>
+
+                        <Grid Grid.Column="3" Margin="0 0 10  0">
+                            <Button x:Name="btnIzaberi" Click="btnIzaberi_Click" Content="Izaberi"/>
+                        </Grid>
+
+                        <Grid Grid.Column="4">
+                            <Image Source="{Binding Path=Ikonica}" Height="22px" Width="22px"></Image>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Status ugrozenosti -->
+                    <TextBlock Text="Status ugroženosti:" Margin="0 15 0 0"/>
+                    <ComboBox Name="statusUgr" Margin="0 2 0 0" SelectedIndex="{Binding Path=StatusUgrozenosti}">
+                        <ComboBoxItem ></ComboBoxItem>
+                        <ComboBoxItem >Kritično ugrožena</ComboBoxItem>
+                        <ComboBoxItem>Ugrožena</ComboBoxItem>
+                        <ComboBoxItem>Ranjiva</ComboBoxItem>
+                        <ComboBoxItem>Zavisna od očuvanja staništa</ComboBoxItem>
+                        <ComboBoxItem>Blizu rizika</ComboBoxItem>
+                        <ComboBoxItem>Najmanjeg rizika</ComboBoxItem>
+                    </ComboBox>
+
+                    <!-- Opasna po ljude, listaIUCN, naseljena regija -->
+                    <Grid Margin=" 0 15 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width=" 33*"/>
+                            <ColumnDefinition Width=" 33*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Name="opasnaPoLjude" Grid.Column="0" IsChecked="{Binding OpasnaPoLjude}" Content="Opasna po ljude"/>
+                        <CheckBox Name="listaIUCN" Grid.Column="1"  IsChecked="{Binding ListaIUCN}" Content="Nalazi se na IUCN listi"/>
+                        <CheckBox Name="naseljenaRegija" Grid.Column="2"  IsChecked="{Binding NaseljeniRegion}" Content="Živi u naseljenoj regiji"/>
+                    </Grid>
+                    
+                    <!-- Turisticki status -->
+                    <TextBlock Text="Turistički status:"  Margin="0 10 0 0"/>
+                    <ComboBox Margin="0 2 0 0" SelectedIndex="{Binding Path=TuristickiStatus}">
+                        <ComboBoxItem></ComboBoxItem>
+                        <ComboBoxItem>Izolovana</ComboBoxItem>
+                        <ComboBoxItem>Delimično habituirana</ComboBoxItem>
+                        <ComboBoxItem>Habituirana</ComboBoxItem>
+                    </ComboBox>
+
+                    <!-- Datum -->
+                    <TextBlock Text="Datum otkrivanja:" Margin="0 5 0 0"/>
+                    <DatePicker SelectedDate="{Binding Path=DatumOtkrivanja}" DisplayDateEnd="{x:Static sys:DateTime.Today}" Name="datum" Margin="0 2 0 0" />
+
+                    <!-- Prihod -->
+                    <Grid Margin="0 10 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="1*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                    
+
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <TextBlock Text="Godišnji prihod od turizma:" Margin="0 2 0 0"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <TextBox Name="prihod" Text="{Binding Path=Prihod, UpdateSourceTrigger=PropertyChanged}" Padding="2" Margin="0 0 2 0" TextAlignment="Right">
+
+                                <Validation.ErrorTemplate>
+                                    <ControlTemplate >
+                                        
+                                            <Grid>
+                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                 </Grid.RowDefinitions>
+                                                 <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <!-- ispis poruke o validaciji -->
+                                                <Border BorderBrush="Red" BorderThickness="1">
+                                                    <AdornedElementPlaceholder Grid.Row="0"/>
+                                                </Border>
+                                                <TextBlock  Margin="1 1 0 0" Grid.Row="1" Foreground="Red">Prihod mora biti brojna vrednost!</TextBlock>
+                                            </Grid>
+                                    </ControlTemplate>
+                                </Validation.ErrorTemplate>
+
+                            </TextBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2" Grid.Row="0">
+                            <TextBlock Text="USD" Margin="7 2 0 0" Foreground="Green"/>
+                        </Grid>
+                        
+                        
+                    </Grid>
+                    <Grid Margin="0 23 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="75*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <TextBlock Margin="0 33 0 0 " Text="Dodeljene etikete:"></TextBlock>
+                        </Grid>
+
+                        <Grid Margin="10 0 0 0" Background="Chocolate" Grid.Column="1">
+                            <ListBox x:Name="listaEtiketa" ItemsSource="{Binding Path=Etikete}" Height="90" VerticalAlignment="Top">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Grid Margin="0 0 10 0 " Grid.Column="0" >
+                                                <Rectangle Width="130" Fill="{Binding Path=Boja}"></Rectangle>
+                                            </Grid>
+                                            
+                                            <Grid Margin="0 0 0 0" Grid.Column="1">
+                                                <CheckBox Content="{Binding Id}" IsChecked="{Binding Path=Otkaceno}" />
+                                            </Grid>
+                                        </Grid>
+                                        
+                                        
+                                            
+                                        
+                                    </DataTemplate>
+                                    
+                                </ListBox.ItemTemplate>
+                                
+                                
+                            </ListBox>
+                            
+                            
+                            
+                        </Grid>
+                   
+
+
+                    </Grid>
+
+
+                </StackPanel>
+
+
+            </Grid>
+
+            <!-- Buttons -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="btnEdit" Click="btnEdit_Click" Grid.Column="1" Margin="0 0 2.5 0">Izmeni</Button>
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Grid.Column="1" Margin="0 0 2.5 0">Dodaj</Button>
+                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="2" Margin="2.5 0 0 0">Otkaži</Button>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
