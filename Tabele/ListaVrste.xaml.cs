@@ -50,6 +50,20 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
         {
             Vrsta v = (Vrsta)tabela.SelectedItem;
             Kolekcije.InstancaKolekcije.Vrste.Remove(v);
+            Kolekcije.InstancaKolekcije.ListaVrste.Remove(v);
+            // TODO brisanje iz MapaVrste
+            
+            for (int i = 0; i < Kolekcije.InstancaKolekcije.MapaVrste.Count; i++)
+            {
+                if (Kolekcije.InstancaKolekcije.MapaVrste[i].V.Id.Equals(v.Id))
+                {
+                    Ikonica tempV = Kolekcije.InstancaKolekcije.MapaVrste[i];
+                    MainWindow.InstanceMW.canvasMapa.Children.RemoveAt(i);
+                    Kolekcije.InstancaKolekcije.MapaVrste.RemoveAt(i);
+                    break;
+                }
+            }
+            
         }
     }
 }

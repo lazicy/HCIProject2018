@@ -5,12 +5,12 @@
         
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Dijalozi"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="Napravi novu etiketu" Height="280" Width="420" ResizeMode="NoResize">
+        Title="Napravi novu etiketu" Height="280" Width="420" ResizeMode="CanResize">
     <Border Padding="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="90*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="22"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -42,22 +42,30 @@
                 </StackPanel>
 
             </Grid>
-            
-            
-            
+
+
+
             <!-- Buttons -->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" FlowDirection="RightToLeft">
 
-                <Button x:Name="btnEdit" Click="btnEdit_Click" Grid.Column="1" Margin="0 0 2.5 0">Izmeni</Button>
-                <Button x:Name="btnAdd" Click="btnAdd_Click" Grid.Column="1" Margin="0 0 2.5 0">Dodaj</Button>
-                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="2" Margin="2.5 0 0 0">Otkaži</Button>
 
-            </Grid>
+                <Grid Width="160" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition />
+
+                    </Grid.ColumnDefinitions>
+
+
+
+
+                    <Button Grid.Column="1" x:Name="btnEdit" Click="btnEdit_Click" Margin="0 0 0 0" Width="75">Izmeni</Button>
+                    <Button Grid.Column="1" x:Name="btnAdd" Click="btnAdd_Click"  Margin="0 0 0 0" Width="75 ">Dodaj</Button>
+                    <Button Grid.Column="0" x:Name="btnCancel" Click="btnCancel_Click" Margin="0 0 1 0" Width="75">Otkaži</Button>
+
+
+                </Grid>
+            </StackPanel>
         </Grid>
         
     </Border>

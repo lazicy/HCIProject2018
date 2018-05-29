@@ -75,6 +75,7 @@ namespace HCI2018PZ4._3EURA78_2015.Model
         private double _prihod;
         private DateTime _datumOtkrivanja = System.DateTime.Today;
         private ObservableCollection<Etiketa> _dodeljeneEtikete = new ObservableCollection<Etiketa>();
+        private bool _customIcon;
 
         public Vrsta()
         {
@@ -307,6 +308,22 @@ namespace HCI2018PZ4._3EURA78_2015.Model
                 {
                     _dodeljeneEtikete = value;
                     OnPropertyChanged("DodeljeneEtikete");
+                }
+            }
+        }
+
+        public bool CustomIcon
+        {
+            get
+            {
+                return _customIcon;
+            }
+            set
+            {
+                if (value != _customIcon)
+                {
+                    _customIcon = value;
+                    OnPropertyChanged("CustomIcon");
                 }
             }
         }

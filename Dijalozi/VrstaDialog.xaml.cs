@@ -33,8 +33,10 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             v.Tipovi = Kolekcije.InstancaKolekcije.Tipovi;
             v.Etikete = Kolekcije.InstancaKolekcije.Etikete;
             this.DataContext = v;
+            closeBtnImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/close.png"));
             btnAdd.Visibility = Visibility.Visible;
             btnEdit.Visibility = Visibility.Hidden;
+            closeBtn.Visibility = Visibility.Hidden;
         }
 
         public VrstaDialog(Vrsta editVrsta)
@@ -56,6 +58,7 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             v.Prihod = editV.Prihod;
             v.DatumOtkrivanja = editV.DatumOtkrivanja;
             v.DodeljeneEtikete = editV.DodeljeneEtikete;
+            v.CustomIcon = editV.CustomIcon;
             v.Tipovi = Kolekcije.InstancaKolekcije.Tipovi;
             v.Etikete = Kolekcije.InstancaKolekcije.Etikete;
 
@@ -70,7 +73,24 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
                     }
                 }
             }
+
             this.DataContext = v;
+            closeBtnImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/close.png"));
+
+
+
+            if (v.CustomIcon)
+            {
+                Binding binding = new Binding();
+                binding.Source = v.Ikonica;
+                BindingOperations.SetBinding(ikonicaShow, Image.SourceProperty, binding);
+
+                closeBtn.Visibility = Visibility.Visible;
+            } else
+            {
+                closeBtn.Visibility = Visibility.Hidden;
+            }
+
             btnEdit.Visibility = Visibility.Visible;
             btnAdd.Visibility = Visibility.Hidden;
 
@@ -324,10 +344,17 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
                 v.Tip.Naziv
                );
 
+            if (!v.CustomIcon)
+            {
+                v.Ikonica = v.Tip.Ikonica;
+            }
+
             v.ProveriChekiraneEtikete();
 
             //dodavanje u glavnu listu
             Kolekcije.InstancaKolekcije.Vrste.Add(v);
+            Kolekcije.InstancaKolekcije.ListaVrste.Add(v);
+ 
             Kolekcije.InstancaKolekcije.PrintVrsta();
             this.Close();
         }       
@@ -338,6 +365,12 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             foreach (Etiketa etik in Kolekcije.InstancaKolekcije.Etikete)
             {
                    etik.Otkaceno = false;
+            }
+
+
+            if (!v.CustomIcon)
+            {
+                v.Ikonica = v.Tip.Ikonica;
             }
 
             editV.Id = v.Id;
@@ -352,6 +385,7 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             editV.Ikonica = v.Ikonica;
             editV.Prihod = v.Prihod;
             editV.DatumOtkrivanja = v.DatumOtkrivanja;
+            editV.CustomIcon = v.CustomIcon;
             editV.DodeljeneEtikete = v.DodeljeneEtikete;
 
             this.Close();
@@ -379,21 +413,37 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
 
             if (openFileDialog.ShowDialog() == true)
             {
-                //Console.WriteLine("URI: " + openFileDialog.FileName);
+                
                 v.Ikonica = openFileDialog.FileName;
-               // v.IkonicaView = new BitmapImage(new Uri(v.Ikonica));
-               
+                Binding binding = new Binding();
+                binding.Source = v.Ikonica;
+                BindingOperations.SetBinding(ikonicaShow, Image.SourceProperty, binding);
+                v.CustomIcon = true;
+                closeBtn.Visibility = Visibility.Visible;
+              
+
             }
 
         }
 
-       
-
-        private void getValues()
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
             
-        }
+            Binding binding = new Binding();
+            binding.Path = new PropertyPath("Ikonica");
+            binding.Source = v.Tip;
+            binding.Mode = BindingMode.TwoWay;
+            binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            binding.IsAsync = true;
+            BindingOperations.SetBinding(ikonicaShow, Image.SourceProperty, binding);
+            v.Ikonica = null;
+            v.CustomIcon = false;
 
+         
+            closeBtn.Visibility = Visibility.Hidden;
+        }
        
+
+        
     }
 }

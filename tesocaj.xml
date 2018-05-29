@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Kolekcije xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vrste>
+    <Vrsta>
+      <Id>asdsdasdas</Id>
+      <Naziv>asdasd</Naziv>
+      <Opis>asd</Opis>
+      <Prihod>0</Prihod>
+      <Tip>
+        <Id>asdasasdasdasdasgnvdetvbaasffs</Id>
+        <Naziv>dasdasdfdfd</Naziv>
+        <Opis>dasd</Opis>
+        <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      </Tip>
+      <StatusUgrozenosti>0</StatusUgrozenosti>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      <OpasnaPoLjude>false</OpasnaPoLjude>
+      <ListaIUCN>false</ListaIUCN>
+      <NaseljeniRegion>false</NaseljeniRegion>
+      <TuristickiStatus>0</TuristickiStatus>
+      <DatumOtkrivanja>2018-05-28T00:00:00+02:00</DatumOtkrivanja>
+      <DodeljeneEtikete />
+      <CustomIcon>false</CustomIcon>
+      <Tipovi>
+        <Tip>
+          <Id>asdasasdasdasdasgnvdetvbaasffs</Id>
+          <Naziv>dasdasdfdfd</Naziv>
+          <Opis>dasd</Opis>
+          <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+        </Tip>
+      </Tipovi>
+      <Etikete />
+    </Vrsta>
+  </Vrste>
+  <Tipovi>
+    <Tip>
+      <Id>asdasasdasdasdasgnvdetvbaasffs</Id>
+      <Naziv>dasdasdfdfd</Naziv>
+      <Opis>dasd</Opis>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+    </Tip>
+  </Tipovi>
+  <Etikete />
+</Kolekcije>

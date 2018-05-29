@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Kolekcije xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vrste />
+  <Tipovi>
+    <Tip>
+      <Id>id7691</Id>
+      <Naziv>Mačka</Naziv>
+      <Opis>Porodica mačaka.</Opis>
+      <Ikonica>C:\Users\lazic\Pictures\roll\cat.png</Ikonica>
+    </Tip>
+    <Tip>
+      <Id>id9087</Id>
+      <Naziv>Pas</Naziv>
+      <Opis>Porodica pasa.</Opis>
+      <Ikonica>C:\Users\lazic\Pictures\roll\dog.png</Ikonica>
+    </Tip>
+  </Tipovi>
+  <Etikete>
+    <Etiketa>
+      <Id>001red</Id>
+      <Boja>#FFDC143C</Boja>
+      <Opis>Crvena boja etikete.</Opis>
+      <Otkaceno>false</Otkaceno>
+    </Etiketa>
+    <Etiketa>
+      <Id>002green</Id>
+      <Boja>#FF2E8B57</Boja>
+      <Opis>Zelena etiketa.</Opis>
+      <Otkaceno>false</Otkaceno>
+    </Etiketa>
+    <Etiketa>
+      <Id>003gold</Id>
+      <Boja>#FFF4A460</Boja>
+      <Opis>Zlatna boja.</Opis>
+      <Otkaceno>false</Otkaceno>
+    </Etiketa>
+    <Etiketa>
+      <Id>004skyblue</Id>
+      <Boja>#FF00BFFF</Boja>
+      <Opis>Plava boja.</Opis>
+      <Otkaceno>false</Otkaceno>
+    </Etiketa>
+  </Etikete>
+</Kolekcije>

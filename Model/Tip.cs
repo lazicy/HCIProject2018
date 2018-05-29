@@ -15,11 +15,12 @@ namespace HCI2018PZ4._3EURA78_2015.Model
         private string _naziv;
         private string _opis;
         private string _ikonica = null;
-        //private BitmapImage _ikonicaView;
+      
+
         public Tip()
         {
-            Ikonica = "C:/Projects/HCI2018PZ4.3EURA78-2015/HCI2018PZ4.3EURA78-2015/Images/icondefault.png";
-           
+            // TODO change defaulticon
+            Ikonica = "pack://application:,,,/Images/icondefault.png";
         }
 
         public string Id
@@ -88,7 +89,7 @@ namespace HCI2018PZ4._3EURA78_2015.Model
             }
         }
 
-
+     
 
 
         public event PropertyChangedEventHandler PropertyChanged;
