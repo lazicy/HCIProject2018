@@ -30,8 +30,8 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
         {
             InitializeComponent();
             this.v = new Vrsta();
-            v.Tipovi = Kolekcije.InstancaKolekcije.Tipovi;
-            v.Etikete = Kolekcije.InstancaKolekcije.Etikete;
+            v.Tipovi = MainWindow.InstancaKolekcije.Tipovi;
+            v.Etikete = MainWindow.InstancaKolekcije.Etikete;
             this.DataContext = v;
             closeBtnImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/close.png"));
             btnAdd.Visibility = Visibility.Visible;
@@ -59,8 +59,8 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             v.DatumOtkrivanja = editV.DatumOtkrivanja;
             v.DodeljeneEtikete = editV.DodeljeneEtikete;
             v.CustomIcon = editV.CustomIcon;
-            v.Tipovi = Kolekcije.InstancaKolekcije.Tipovi;
-            v.Etikete = Kolekcije.InstancaKolekcije.Etikete;
+            v.Tipovi = MainWindow.InstancaKolekcije.Tipovi;
+            v.Etikete = MainWindow.InstancaKolekcije.Etikete;
 
             // jako brljavo, ovo moras ispraviti
             foreach (Etiketa et in v.DodeljeneEtikete)
@@ -325,9 +325,9 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             Console.WriteLine("[V] ID: {0} || Naziv: {1} || Opis: {2} || Ugrozen: {3} || Opasna: {4} || IUCN: {5} || Regija: {6} || Datum: {7} || Prihod: {8} || Ikonica: {9} || Tip {10}"
                 , Id, Naziv, Opis, StatusUgrozenosti, OpasnaPoLjude, ListaIUCN, NaseljenaRegija, Datum, Prihod, Ikonica, Tip.Naziv);
             Model.Vrsta v = new Model.Vrsta(Id, Naziv, Opis, Tip, StatusUgrozenosti, Ikonica, OpasnaPoLjude, ListaIUCN, NaseljenaRegija, TuristickiStatus, Prihod, Datum, DodeljeneEtikete);
-            Kolekcije.InstancaKolekcije.Vrste.Add(v);
+            MainWindow.InstancaKolekcije.Vrste.Add(v);
             this.Close();
-            Kolekcije.InstancaKolekcije.PrintVrsta();
+            MainWindow.InstancaKolekcije.PrintVrsta();
             */
             Console.WriteLine("[V] ID: {0} || Naziv: {1} || Opis: {2} || Ugrozen: {3} || Opasna: {4} || IUCN: {5} || Regija: {6} || Datum: {7} || Prihod: {8} || Ikonica: {9} || TurStatus: {10} || Tip: {11} "
                ,v.Id, 
@@ -352,17 +352,19 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             v.ProveriChekiraneEtikete();
 
             //dodavanje u glavnu listu
-            Kolekcije.InstancaKolekcije.Vrste.Add(v);
-            Kolekcije.InstancaKolekcije.ListaVrste.Add(v);
- 
-            Kolekcije.InstancaKolekcije.PrintVrsta();
+            MainWindow.InstancaKolekcije.Vrste.Add(v);
+            MainWindow.InstancaKolekcije.ListaVrste.Add(v);
+            //MainWindow.RefreshView();
+
+            MainWindow.InstancaKolekcije.PrintVrstaListe();
+            MainWindow.InstancaKolekcije.PrintVrsta();
             this.Close();
         }       
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             v.ProveriChekiraneEtikete();
-            foreach (Etiketa etik in Kolekcije.InstancaKolekcije.Etikete)
+            foreach (Etiketa etik in MainWindow.InstancaKolekcije.Etikete)
             {
                    etik.Otkaceno = false;
             }
@@ -397,7 +399,7 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
         {
 
            //defanziva 
-            foreach (Etiketa etik in Kolekcije.InstancaKolekcije.Etikete)
+            foreach (Etiketa etik in MainWindow.InstancaKolekcije.Etikete)
             {
                     etik.Otkaceno = false;
             }

@@ -14,18 +14,18 @@ namespace HCI2018PZ4._3EURA78_2015.Model
 {
     public class Kolekcije : INotifyPropertyChanged
     {
-        private ObservableCollection<Vrsta> _vrste;
-        private ObservableCollection<Tip> _tipovi;
-        private ObservableCollection<Etiketa> _etikete;
-        private ObservableCollection<Vrsta> _listaVrste;
-        private ObservableCollection<Ikonica> _mapaVrste;
+        private ObservableCollection<Vrsta> _vrste = new ObservableCollection<Vrsta>();
+        private ObservableCollection<Tip> _tipovi = new ObservableCollection<Tip>();
+        private ObservableCollection<Etiketa> _etikete = new ObservableCollection<Etiketa>();
+        private ObservableCollection<Vrsta> _listaVrste =   new ObservableCollection<Vrsta>();
+        private ObservableCollection<Ikonica> _mapaVrste =  new ObservableCollection<Ikonica>();
 
 
         public Kolekcije()
         {
-            this._vrste = new ObservableCollection<Vrsta>();
-            this._tipovi = new ObservableCollection<Tip>();
-            this._etikete = new ObservableCollection<Etiketa>();
+            this._vrste =    new ObservableCollection<Vrsta>();
+            this._tipovi =   new ObservableCollection<Tip>();
+            this._etikete =  new ObservableCollection<Etiketa>();
             this._listaVrste= new ObservableCollection<Vrsta>();
             this._mapaVrste = new ObservableCollection<Ikonica>();
 
@@ -43,23 +43,7 @@ namespace HCI2018PZ4._3EURA78_2015.Model
         }
 
 
-        private static Kolekcije instancaKolekcije = null;
-        public static Kolekcije InstancaKolekcije
-        {
-            get
-            {
-                if (instancaKolekcije == null)
-                {
-                    instancaKolekcije = new Kolekcije();
-                }
-                return instancaKolekcije;
-                    
-            }
-            set
-            {
-                instancaKolekcije = value;
-             }
-        }
+      
 
 
 
@@ -139,7 +123,7 @@ namespace HCI2018PZ4._3EURA78_2015.Model
                 using (var stream = new FileStream(saveDialog.FileName, FileMode.Create))
                 {
                     var Xml = new XmlSerializer(typeof(Kolekcije));
-                    Xml.Serialize(stream, Kolekcije.InstancaKolekcije);
+                    Xml.Serialize(stream, MainWindow.InstancaKolekcije);
                 }
             }
         }
@@ -153,10 +137,37 @@ namespace HCI2018PZ4._3EURA78_2015.Model
 
                 using (var stream = new FileStream(openDialog.FileName, FileMode.Open))
                 {
+                    MainWindow.InstanceMW.canvasMapa_RemoveIkonice();
                     var Xml = new XmlSerializer(typeof(Kolekcije));
-                    InstancaKolekcije =(Kolekcije) Xml.Deserialize(stream);
-                    MainWindow.InstanceMW.RefreshView();
-               }
+                    Kolekcije ucitanaKolekcija =(Kolekcije) Xml.Deserialize(stream);
+
+                    MainWindow.InstancaKolekcije.ListaVrste.Clear();
+                    for ( int i = 0; i < ucitanaKolekcija.ListaVrste.Count; i++)
+                    {
+                        MainWindow.InstancaKolekcije.ListaVrste.Add(ucitanaKolekcija.ListaVrste[i]);
+                    }
+
+                    MainWindow.InstancaKolekcije.Vrste.Clear();
+                    for (int i = 0; i < ucitanaKolekcija.Vrste.Count; i++)
+                    {
+                        MainWindow.InstancaKolekcije.Vrste.Add(ucitanaKolekcija.Vrste[i]);
+                    }
+
+                    MainWindow.InstancaKolekcije.Tipovi.Clear();
+                    for (int i = 0; i < ucitanaKolekcija.Tipovi.Count; i++)
+                    {
+                        MainWindow.InstancaKolekcije.Tipovi.Add(ucitanaKolekcija.Tipovi[i]);
+                    }
+
+                    MainWindow.InstancaKolekcije.MapaVrste.Clear();
+                    for (int i = 0; i < ucitanaKolekcija.MapaVrste.Count; i++)
+                    {
+                        MainWindow.InstancaKolekcije.MapaVrste.Add(ucitanaKolekcija.MapaVrste[i]);
+                    }
+                    MainWindow.InstanceMW.canvasMapa_AddIkonice();
+
+
+                }
             }
         }
 
@@ -164,6 +175,16 @@ namespace HCI2018PZ4._3EURA78_2015.Model
         {
             foreach (Vrsta v in Vrste)
             {
+                Console.WriteLine("Vrste:");
+                Console.WriteLine("IDvrste: {0} | Naziv vrste: {1}", v.Id, v.Naziv);
+            }
+        }
+
+        public void PrintVrstaListe()
+        {
+            foreach (Vrsta v in ListaVrste)
+            {
+                Console.WriteLine("ListaVrste:");
                 Console.WriteLine("IDvrste: {0} | Naziv vrste: {1}", v.Id, v.Naziv);
             }
         }

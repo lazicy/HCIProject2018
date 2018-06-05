@@ -25,7 +25,7 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
         {
             InitializeComponent();
             this.DataContext = this;
-            EtiketeLista = Kolekcije.InstancaKolekcije.Etikete;
+            EtiketeLista = MainWindow.InstancaKolekcije.Etikete;
         }
 
         public ObservableCollection<Etiketa> EtiketeLista
@@ -49,7 +49,7 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Etiketa et = (Etiketa)tabela.SelectedItem;
-            Kolekcije.InstancaKolekcije.Etikete.Remove(et);
+            MainWindow.InstancaKolekcije.Etikete.Remove(et);
         }
     }
 }

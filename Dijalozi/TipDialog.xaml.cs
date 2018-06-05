@@ -70,8 +70,8 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             Console.WriteLine("[TipV]: Id: {0} || Naziv: {1} || Opis: {2} || Ikonica: {3}", t.Id, t.Naziv, t.Opis, t.Ikonica);
            
             // dodavanjeu glavnu kolekciju tipova
-            Kolekcije.InstancaKolekcije.Tipovi.Add(t);
-            Kolekcije.InstancaKolekcije.PrintTipova();
+            MainWindow.InstancaKolekcije.Tipovi.Add(t);
+            MainWindow.InstancaKolekcije.PrintTipova();
             this.Close();
 
 

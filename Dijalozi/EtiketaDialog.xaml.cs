@@ -109,8 +109,8 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             
             Console.WriteLine("[EtiketaV]: Id: {0} || Boja: {1} || Opis: {2}", et.Id, et.Boja, et.Opis);
           
-            Kolekcije.InstancaKolekcije.Etikete.Add(et);
-            Kolekcije.InstancaKolekcije.PrintEtiketa();
+            MainWindow.InstancaKolekcije.Etikete.Add(et);
+            MainWindow.InstancaKolekcije.PrintEtiketa();
             this.Close();
 
 

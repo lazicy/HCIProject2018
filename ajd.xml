@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<Kolekcije xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vrste>
+    <Vrsta>
+      <Id>vrstica1</Id>
+      <Naziv>Vrsta1</Naziv>
+      <Opis>sfasf</Opis>
+      <Prihod>0</Prihod>
+      <Tip>
+        <Id>tipo1</Id>
+        <Naziv>Tipcina</Naziv>
+        <Opis>nazivina</Opis>
+        <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      </Tip>
+      <StatusUgrozenosti>0</StatusUgrozenosti>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      <OpasnaPoLjude>false</OpasnaPoLjude>
+      <ListaIUCN>false</ListaIUCN>
+      <NaseljeniRegion>false</NaseljeniRegion>
+      <TuristickiStatus>0</TuristickiStatus>
+      <DatumOtkrivanja>2018-06-05T00:00:00+02:00</DatumOtkrivanja>
+      <DodeljeneEtikete />
+      <CustomIcon>false</CustomIcon>
+      <Tipovi>
+        <Tip>
+          <Id>tipo1</Id>
+          <Naziv>Tipcina</Naziv>
+          <Opis>nazivina</Opis>
+          <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+        </Tip>
+      </Tipovi>
+      <Etikete />
+    </Vrsta>
+  </Vrste>
+  <Tipovi>
+    <Tip>
+      <Id>tipo1</Id>
+      <Naziv>Tipcina</Naziv>
+      <Opis>nazivina</Opis>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+    </Tip>
+  </Tipovi>
+  <Etikete />
+  <ListaVrste>
+    <Vrsta>
+      <Id>vrstica1</Id>
+      <Naziv>Vrsta1</Naziv>
+      <Opis>sfasf</Opis>
+      <Prihod>0</Prihod>
+      <Tip>
+        <Id>tipo1</Id>
+        <Naziv>Tipcina</Naziv>
+        <Opis>nazivina</Opis>
+        <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      </Tip>
+      <StatusUgrozenosti>0</StatusUgrozenosti>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      <OpasnaPoLjude>false</OpasnaPoLjude>
+      <ListaIUCN>false</ListaIUCN>
+      <NaseljeniRegion>false</NaseljeniRegion>
+      <TuristickiStatus>0</TuristickiStatus>
+      <DatumOtkrivanja>2018-06-05T00:00:00+02:00</DatumOtkrivanja>
+      <DodeljeneEtikete />
+      <CustomIcon>false</CustomIcon>
+      <Tipovi>
+        <Tip>
+          <Id>tipo1</Id>
+          <Naziv>Tipcina</Naziv>
+          <Opis>nazivina</Opis>
+          <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+        </Tip>
+      </Tipovi>
+      <Etikete />
+    </Vrsta>
+    <Vrsta>
+      <Naziv>Milan</Naziv>
+      <Prihod>0</Prihod>
+      <StatusUgrozenosti>0</StatusUgrozenosti>
+      <OpasnaPoLjude>false</OpasnaPoLjude>
+      <ListaIUCN>false</ListaIUCN>
+      <NaseljeniRegion>false</NaseljeniRegion>
+      <TuristickiStatus>0</TuristickiStatus>
+      <DatumOtkrivanja>2018-06-05T00:00:00+02:00</DatumOtkrivanja>
+      <DodeljeneEtikete />
+      <CustomIcon>false</CustomIcon>
+    </Vrsta>
+  </ListaVrste>
+  <MapaVrste />
+</Kolekcije>

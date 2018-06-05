@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,20 +20,24 @@ namespace HCI2018PZ4._3EURA78_2015
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
       
         public static MainWindow InstanceMW { get; private set; }
         public Point startPoint;
         private bool promena = false;
+        public static Kolekcije InstancaKolekcije;
 
         public MainWindow()
         {
             InitializeComponent();
-            vrsteLista.ItemsSource = Kolekcije.InstancaKolekcije.ListaVrste;
+            InstancaKolekcije = new Kolekcije();
+
+            VrstaListe = InstancaKolekcije.ListaVrste;
+            
             this.DataContext = this;
             InstanceMW = this;
-
+            
 
             //btnAdd.Source = new BitmapImage(new Uri("pack://application:,,,/Images/addbtn.png"));
             
@@ -41,17 +46,37 @@ namespace HCI2018PZ4._3EURA78_2015
                 
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        //private ObservableCollection<Vrsta> _vrstaListe;
+        public static ObservableCollection<Vrsta> VrstaListe
+        {
+            get;
+            set;
+        }
+
         public static MainWindow MainWindowInstance
         {
             get;
             set;
         }
 
-        public void RefreshView()
-        {
-            vrsteLista.ItemsSource = Kolekcije.InstancaKolekcije.ListaVrste;
-        }
-        
+        //public static void RefreshView()
+        //{
+        //    Vrsta v = new Vrsta();
+        //    v.Naziv = "Milan";
+        //    MainWindow.InstancaKolekcije.ListaVrste.Add(v);
+        //}
+
 
 
         private void Vrsta_Click(object sender, RoutedEventArgs e)
@@ -123,12 +148,14 @@ namespace HCI2018PZ4._3EURA78_2015
                     FindAncestor<ListViewItem>((DependencyObject)e.OriginalSource);
 
                 // Find the data behind the ListViewItem
-                Vrsta v = (Vrsta)listView.ItemContainerGenerator.
-                    ItemFromContainer(listViewItem);
+                Vrsta v = (Vrsta)listView.SelectedItem;
 
                 // Initialize the drag & drop operation
-                DataObject dragData = new DataObject("myFormat", v);
-                DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+                if ( listViewItem != null)
+                {
+                    DataObject dragData = new DataObject("myFormat", v);
+                    DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+                }
             }
         }
 
@@ -146,7 +173,7 @@ namespace HCI2018PZ4._3EURA78_2015
             return null;
         }
 
-       
+
         private void canvasMapa_DragEnter(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
@@ -159,9 +186,9 @@ namespace HCI2018PZ4._3EURA78_2015
         {
             if (e.Data.GetDataPresent("myFormat"))
             {
-                Vrsta v= e.Data.GetData("myFormat") as Vrsta;
+                Vrsta v = e.Data.GetData("myFormat") as Vrsta;
 
-                Kolekcije.InstancaKolekcije.ListaVrste.Remove(v);
+                MainWindow.InstancaKolekcije.ListaVrste.Remove(v);
                 Image ikonica = new Image();
                 ikonica.Height = 30;
                 ikonica.Width = 30;
@@ -179,17 +206,17 @@ namespace HCI2018PZ4._3EURA78_2015
                     Canvas.SetTop(ikonica, p.Y);
 
                     Ikonica icon = new Ikonica(p.X, p.Y, v);
-                    Kolekcije.InstancaKolekcije.MapaVrste.Add(icon);
+                    MainWindow.InstancaKolekcije.MapaVrste.Add(icon);
                 }
                 else
                 {
                     Point p = e.GetPosition(this.canvasMapa);
-                    for (int i = 0; i < Kolekcije.InstancaKolekcije.MapaVrste.Count; i++)
+                    for (int i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
                     {
-                        if (Kolekcije.InstancaKolekcije.MapaVrste[i].V.Id.Equals(v.Id))
+                        if (MainWindow.InstancaKolekcije.MapaVrste[i].V.Id.Equals(v.Id))
                         {
 
-                            Ikonica saCanvasa = Kolekcije.InstancaKolekcije.MapaVrste[i];
+                            Ikonica saCanvasa = MainWindow.InstancaKolekcije.MapaVrste[i];
                             canvasMapa.Children.RemoveAt(i);
                             canvasMapa.Children.Insert(i, ikonica);
 
@@ -203,8 +230,8 @@ namespace HCI2018PZ4._3EURA78_2015
                             Canvas.SetLeft(ikonica, p.X);
                             Canvas.SetTop(ikonica, p.Y);
 
-                            Kolekcije.InstancaKolekcije.MapaVrste[i].X = p.X;
-                            Kolekcije.InstancaKolekcije.MapaVrste[i].Y = p.Y;
+                            MainWindow.InstancaKolekcije.MapaVrste[i].X = p.X;
+                            MainWindow.InstancaKolekcije.MapaVrste[i].Y = p.Y;
                             break;
                         }
                     }
@@ -224,13 +251,13 @@ namespace HCI2018PZ4._3EURA78_2015
 
             if (pomV != null)
             {
-                for (i = 0; i < Kolekcije.InstancaKolekcije.MapaVrste.Count; i++)
+                for (i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
                 {
                     Image img = (Image)canvasMapa.Children[i];
                     //img.Opacity = 0.7;
                     canvasMapa.Children.RemoveAt(i);
                     canvasMapa.Children.Insert(i, img);
-                    if (pomV.Id.Equals(Kolekcije.InstancaKolekcije.MapaVrste[i].V))
+                    if (pomV.Id.Equals(MainWindow.InstancaKolekcije.MapaVrste[i].V))
                     {
                         //img.Opacity = 1;
                         //img.Focus();
@@ -265,7 +292,7 @@ namespace HCI2018PZ4._3EURA78_2015
 
         public Vrsta razdaljina(Point p)
         {
-            foreach (Ikonica icon in Kolekcije.InstancaKolekcije.MapaVrste)
+            foreach (Ikonica icon in MainWindow.InstancaKolekcije.MapaVrste)
             {
                 if ((p.X > icon.X - 1 && p.X < icon.X + 40) && (p.Y > icon.Y - 1 && p.Y < icon.Y + 40))
                 {
@@ -282,7 +309,7 @@ namespace HCI2018PZ4._3EURA78_2015
             throw new NotImplementedException();
         }
 
-       
+
 
         private void canvasMapa_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -291,14 +318,14 @@ namespace HCI2018PZ4._3EURA78_2015
 
             if (v != null)
             {
-                for (int i = 0; i < Kolekcije.InstancaKolekcije.MapaVrste.Count; i++)
+                for (int i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
                 {
-                    if (Kolekcije.InstancaKolekcije.MapaVrste[i].V.Id.Equals(v.Id))
+                    if (MainWindow.InstancaKolekcije.MapaVrste[i].V.Id.Equals(v.Id))
                     {
-                        Ikonica tempV = Kolekcije.InstancaKolekcije.MapaVrste[i];
+                        Ikonica tempV = MainWindow.InstancaKolekcije.MapaVrste[i];
                         canvasMapa.Children.RemoveAt(i);
-                        Kolekcije.InstancaKolekcije.ListaVrste.Add(tempV.V);
-                        Kolekcije.InstancaKolekcije.MapaVrste.RemoveAt(i);
+                        MainWindow.InstancaKolekcije.ListaVrste.Add(tempV.V);
+                        MainWindow.InstancaKolekcije.MapaVrste.RemoveAt(i);
                         break;
                     }
                 }
@@ -310,16 +337,16 @@ namespace HCI2018PZ4._3EURA78_2015
         {
             int i = 0;
 
-            Vrsta pomV= razdaljina(startPoint);
+            Vrsta pomV = razdaljina(startPoint);
 
             if (pomV != null)
             {
-                for (i = 0; i < Kolekcije.InstancaKolekcije.MapaVrste.Count; i++)
+                for (i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
                 {
                     Image img = (Image)canvasMapa.Children[i];
                     canvasMapa.Children.RemoveAt(i);
                     canvasMapa.Children.Insert(i, img);
-                    if (pomV.Id.Equals(Kolekcije.InstancaKolekcije.MapaVrste[i].V))
+                    if (pomV.Id.Equals(MainWindow.InstancaKolekcije.MapaVrste[i].V))
                     {
                         canvasMapa.Children.RemoveAt(i);
                         canvasMapa.Children.Insert(i, img);
@@ -329,11 +356,39 @@ namespace HCI2018PZ4._3EURA78_2015
             }
         }
 
+        public void canvasMapa_AddIkonice()
+        {
+            
+                foreach (Ikonica ikonica in MainWindow.InstancaKolekcije.MapaVrste)
+                {
+                    Image img= new Image();
+                    img.Height = 30;
+                    img.Width = 30;
+                    BitmapImage ikonicaSource = new BitmapImage(new Uri(ikonica.V.Ikonica));
+                    img.Name = ikonica.V.Id;
+                    img.Source = ikonicaSource;
+
+                    Canvas.SetLeft(img, ikonica.X);
+                    Canvas.SetTop(img, ikonica.Y);
+
+                    canvasMapa.Children.Add(img);
+                }
+            
+
+             
+        }
 
 
+        public void canvasMapa_RemoveIkonice()
+        {
 
+            canvasMapa.Children.Clear();
 
+        }
 
+        private void tabela_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

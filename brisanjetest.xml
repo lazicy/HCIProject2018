@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Kolekcije xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vrste>
+    <Vrsta>
+      <Id>vdr1</Id>
+      <Naziv>Vrsta1</Naziv>
+      <Opis>asf</Opis>
+      <Prihod>0</Prihod>
+      <Tip>
+        <Id>tip1</Id>
+        <Naziv>tipovacha1</Naziv>
+        <Opis>asaf</Opis>
+        <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      </Tip>
+      <StatusUgrozenosti>0</StatusUgrozenosti>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      <OpasnaPoLjude>false</OpasnaPoLjude>
+      <ListaIUCN>false</ListaIUCN>
+      <NaseljeniRegion>false</NaseljeniRegion>
+      <TuristickiStatus>0</TuristickiStatus>
+      <DatumOtkrivanja>2018-06-04T00:00:00+02:00</DatumOtkrivanja>
+      <DodeljeneEtikete />
+      <CustomIcon>false</CustomIcon>
+      <Tipovi>
+        <Tip>
+          <Id>tip1</Id>
+          <Naziv>tipovacha1</Naziv>
+          <Opis>asaf</Opis>
+          <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+        </Tip>
+      </Tipovi>
+      <Etikete />
+    </Vrsta>
+  </Vrste>
+  <Tipovi>
+    <Tip>
+      <Id>tip1</Id>
+      <Naziv>tipovacha1</Naziv>
+      <Opis>asaf</Opis>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+    </Tip>
+  </Tipovi>
+  <Etikete />
+  <ListaVrste>
+    <Vrsta>
+      <Id>vdr1</Id>
+      <Naziv>Vrsta1</Naziv>
+      <Opis>asf</Opis>
+      <Prihod>0</Prihod>
+      <Tip>
+        <Id>tip1</Id>
+        <Naziv>tipovacha1</Naziv>
+        <Opis>asaf</Opis>
+        <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      </Tip>
+      <StatusUgrozenosti>0</StatusUgrozenosti>
+      <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+      <OpasnaPoLjude>false</OpasnaPoLjude>
+      <ListaIUCN>false</ListaIUCN>
+      <NaseljeniRegion>false</NaseljeniRegion>
+      <TuristickiStatus>0</TuristickiStatus>
+      <DatumOtkrivanja>2018-06-04T00:00:00+02:00</DatumOtkrivanja>
+      <DodeljeneEtikete />
+      <CustomIcon>false</CustomIcon>
+      <Tipovi>
+        <Tip>
+          <Id>tip1</Id>
+          <Naziv>tipovacha1</Naziv>
+          <Opis>asaf</Opis>
+          <Ikonica>pack://application:,,,/Images/icondefault.png</Ikonica>
+        </Tip>
+      </Tipovi>
+      <Etikete />
+    </Vrsta>
+  </ListaVrste>
+  <MapaVrste />
+</Kolekcije>

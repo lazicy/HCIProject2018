@@ -17,7 +17,8 @@
 
         <Border BorderBrush="Black" BorderThickness="0 0 5 0">
             <Grid Grid.Column="0" Background="#170825">
-                <Canvas Name="canvasMapa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AllowDrop="True" DragEnter="canvasMapa_DragEnter" Drop="canvasMapa_Drop" MouseLeftButtonDown="canvasMapa_MouseLeftButtonDown" MouseMove="canvasMapa_MouseMove" MouseRightButtonDown="canvasMapa_MouseRightButtonDown" >
+                <Canvas Name="canvasMapa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       AllowDrop="True" DragEnter="canvasMapa_DragEnter" Drop="canvasMapa_Drop" MouseLeftButtonDown="canvasMapa_MouseLeftButtonDown" MouseMove="canvasMapa_MouseMove" MouseRightButtonDown="canvasMapa_MouseRightButtonDown"   >
                     <Canvas.Background>
                         <ImageBrush x:Name="mapaImg" />
 
@@ -93,7 +94,7 @@
 
 
 
-                    <ListView  Name="vrsteLista" ItemsSource="{Binding Path=Vrste}" 
+                    <ListView  Name="vrsteLista" ItemsSource="{Binding Path=VrstaListe, Mode=TwoWay}" 
                              PreviewMouseLeftButtonDown="vrsteLista_PreviewMouseLeftButtonDown"
                              MouseMove="vrsteLista_MouseMove" >
                         <ListView.ItemContainerStyle>
@@ -115,6 +116,36 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+
+
+                    <!--<DataGrid GridLinesVisibility="Horizontal" x:Name="tabela" AutoGenerateColumns="False" ItemsSource="{Binding Path=VrstaListe, Mode=TwoWay}" IsReadOnly="True" SelectionChanged="tabela_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Naziv" FontWeight="SemiBold" Binding="{Binding Naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tip" Binding="{Binding Tip.Naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Status ugroženosti" Binding="{Binding StatusUgrozenosti}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Status ugroženosti" Binding="{Binding StatusUgrozenosti}"></DataGridTextColumn>
+                        <DataGridCheckBoxColumn  Header="Opasna po ljude" Binding="{Binding OpasnaPoLjude}"></DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn  Header="IUCN Lista" Binding="{Binding ListaIUCN}"></DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn  Header="Naseljeni region" Binding="{Binding NaseljeniRegion}"></DataGridCheckBoxColumn>
+                        <DataGridTextColumn Header="Turistički status" Binding="{Binding TuristickiStatus}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Prihod" Binding="{Binding Prihod}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Datum otkrivanja" Binding="{Binding DatumOtkrivanja}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Ikonica">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Ikonica}" Height="22" Width="22"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridComboBoxColumn Header="Etikete"></DataGridComboBoxColumn>
+
+                    </DataGrid.Columns>
+
+
+                    </DataGrid>-->
 
 
 

@@ -25,7 +25,7 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
         {
             InitializeComponent();
             this.DataContext = this;
-            TipoviLista = Kolekcije.InstancaKolekcije.Tipovi;
+            TipoviLista = MainWindow.InstancaKolekcije.Tipovi;
         }
 
         public ObservableCollection<Tip> TipoviLista
@@ -49,7 +49,7 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Tip t = (Tip)tabela.SelectedItem;
-            Kolekcije.InstancaKolekcije.Tipovi.Remove(t);
+            MainWindow.InstancaKolekcije.Tipovi.Remove(t);
         }
     }
 }
