@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Tabele"
         mc:Ignorable="d"
-       Title="ListaEtikete" Height="506" Width="900">
+        Closing="WindowClosing"
+       Title="ListaEtikete" Height="506" Width="900" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="14*"/>
             <RowDefinition/>
+            <RowDefinition Height="22"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -42,24 +43,27 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
 
 
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="0" Content="Obriši" Margin="5 5 2.5 5"/>
-                <Button x:Name="btnEdit"   Click="btnEdit_Click" Grid.Column="1" Content="Izmeni" Margin="2.5 5 2.5 5" />
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Grid.Column="0" Content="Dodaj" Margin="0 0.5 1.5 0.5"/>
 
-                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="2" Content="Otkaži" Margin="2.5 5 5 5" />
+                <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1" Content="Obriši" Margin="1.5 0.5 1.5 0.5"/>
+                <Button x:Name="btnEdit"   Click="btnEdit_Click" Grid.Column="2" Content="Izmeni" Margin="1.5 0.5 1.5 0.5" />
 
+                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="3" Content="Glavni prozor" Margin="1.5 0.5 2 0.5" />
             </Grid>
         </Grid>
 

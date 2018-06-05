@@ -37,6 +37,7 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             btnAdd.Visibility = Visibility.Visible;
             btnEdit.Visibility = Visibility.Hidden;
             closeBtn.Visibility = Visibility.Hidden;
+            
         }
 
         public VrstaDialog(Vrsta editVrsta)
@@ -44,7 +45,7 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             InitializeComponent();
             this.v = new Vrsta();
             this.editV = editVrsta;
-
+            id.IsEnabled = false;
             v.Id = editV.Id;
             v.Naziv = editV.Naziv;
             v.Opis = editV.Opis;
@@ -389,6 +390,30 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             editV.DatumOtkrivanja = v.DatumOtkrivanja;
             editV.CustomIcon = v.CustomIcon;
             editV.DodeljeneEtikete = v.DodeljeneEtikete;
+
+            // izmena za ListaVrste
+            for (int i = 0; i < MainWindow.InstancaKolekcije.ListaVrste.Count; i++)
+            {
+                if (MainWindow.InstancaKolekcije.ListaVrste[i].Id.Equals(editV.Id))
+                {
+                    MainWindow.InstancaKolekcije.ListaVrste[i] = editV;
+                    Console.WriteLine("[LOG:VrstaDialogIzmena] Novi naziv[Lista] " + editV.Naziv);
+                }
+            }
+
+            for (int i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
+            {
+                if (MainWindow.InstancaKolekcije.MapaVrste[i].V.Id.Equals(editV.Id))
+                {
+                    MainWindow.InstancaKolekcije.MapaVrste[i].V = editV;
+                    Console.WriteLine("[LOG:VrstaDialogIzmena] Novi naziv[Mapa] " + editV.Naziv);
+                }
+            }
+
+            MainWindow.InstanceMW.canvasMapa_RemoveIkonice();
+            MainWindow.InstanceMW.canvasMapa_AddIkonice();
+
+
 
             this.Close();
             

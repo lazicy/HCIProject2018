@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
             InitializeComponent();
             this.DataContext = this;
             TipoviLista = MainWindow.InstancaKolekcije.Tipovi;
+            MainWindow.InstanceMW.Hide();
         }
 
         public ObservableCollection<Tip> TipoviLista
@@ -34,9 +36,16 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
             set;
         }
 
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Dijalozi.TipDialog tipDialog = new Dijalozi.TipDialog();
+            tipDialog.Show();
+        }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            MainWindow.InstanceMW.Show();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -51,5 +60,12 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
             Tip t = (Tip)tabela.SelectedItem;
             MainWindow.InstancaKolekcije.Tipovi.Remove(t);
         }
+
+        private void WindowClosing(object sender, CancelEventArgs e)
+        {
+
+            MainWindow.InstanceMW.Show();
+        }
     }
 }
+

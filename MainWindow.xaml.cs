@@ -151,7 +151,7 @@ namespace HCI2018PZ4._3EURA78_2015
                 Vrsta v = (Vrsta)listView.SelectedItem;
 
                 // Initialize the drag & drop operation
-                if ( listViewItem != null)
+                if ( listViewItem != null && v != null)
                 {
                     DataObject dragData = new DataObject("myFormat", v);
                     DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);

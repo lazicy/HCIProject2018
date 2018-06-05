@@ -40,7 +40,7 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             t = new Tip();
             editTip = editT;
             this.DataContext = t;
-
+            id.IsEnabled = false;
             btnAdd.Visibility = Visibility.Hidden;
             btnEdit.Visibility = Visibility.Visible;
             
@@ -106,6 +106,36 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             editTip.Naziv = t.Naziv;
             editTip.Opis = t.Opis;
             editTip.Ikonica = t.Ikonica;
+
+            for (int i = 0; i<MainWindow.InstancaKolekcije.Vrste.Count; i++)
+            {
+                if (MainWindow.InstancaKolekcije.Vrste[i].Tip.Id.Equals(editTip.Id))
+                { 
+                    MainWindow.InstancaKolekcije.Vrste[i].Ikonica = editTip.Ikonica;
+                }
+            }
+
+            for (int i = 0; i < MainWindow.InstancaKolekcije.ListaVrste.Count; i++)
+            {
+                if (MainWindow.InstancaKolekcije.ListaVrste[i].Tip.Id.Equals(editTip.Id))
+                {
+                    MainWindow.InstancaKolekcije.ListaVrste[i].Ikonica = editTip.Ikonica;
+                }
+            }
+
+            for (int i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
+            {
+
+                if (MainWindow.InstancaKolekcije.MapaVrste[i].V.Tip.Id.Equals(editTip.Id))
+                {
+                    MainWindow.InstancaKolekcije.MapaVrste[i].V.Ikonica = editTip.Ikonica;
+                }
+            }
+
+            MainWindow.InstanceMW.canvasMapa_RemoveIkonice();
+            MainWindow.InstanceMW.canvasMapa_AddIkonice();
+
+            
             this.Close();
 
 

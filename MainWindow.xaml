@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015"
         mc:Ignorable="d"
-        Title="Mapa ugroženih vrsta sveta" Height="576" Width="1024">
+        Title="Mapa ugroženih vrsta sveta" Height="576" Width="1024" WindowStartupLocation="CenterScreen">
     
 
     <Grid>
@@ -35,14 +35,14 @@
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
-                    <RowDefinition/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="90"/>
 
                 </Grid.RowDefinitions>
                 
                 <!-- TOP PANEL (Vrsta, tip, etiketa) -->
-                <Grid Grid.Row="0" Background="#251e08">
+                <Grid Grid.Row="2" Background="#251e08">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="55*"/>
@@ -156,7 +156,7 @@
                 
                 
                 <!-- BOTTOM PANEL (Buttons) -->
-                <Grid Grid.Row="2" Background="#08251e">
+                <Grid Grid.Row="0" Background="#08251e">
                     <Grid.ColumnDefinitions>
                         
                         <ColumnDefinition/>

@@ -5,15 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Tabele"
         mc:Ignorable="d"
-        Title="ListaVrste" Height="506" Width="900">
+        Closing="WindowClosing"
+        Title="ListaVrste" Height="506" Width="900" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="14*"/>
+            <RowDefinition Height="30" />
+
             <RowDefinition/>
+            <RowDefinition Height="22"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Background="#170825" Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center"  FontWeight="DemiBold"
+                       Foreground="White" Margin="6 0 0 0">Pretraga:</TextBlock>
+
+            <ComboBox x:Name="combo" VerticalAlignment="Center" Grid.Column="1" >
+                <ComboBoxItem x:Name="sve">Sva polja</ComboBoxItem>
+                <ComboBoxItem x:Name="oznaka">Oznaka</ComboBoxItem>
+                <ComboBoxItem x:Name="naziv">Naziv</ComboBoxItem>
+                <ComboBoxItem x:Name="tip">Tip</ComboBoxItem>
+                <ComboBoxItem x:Name="prihod">Prihod</ComboBoxItem>
+            </ComboBox>
+
+            <!--<ComboBox Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding Path=Tipovi}"  DisplayMemberPath="Naziv" >
+                
+            </ComboBox>-->
+            <TextBox Grid.Column="2" VerticalAlignment="Center" Height="20" Margin="10 0 5 0"></TextBox>
+            
+        </Grid>
+        <Grid Grid.Row="1">
             <DataGrid GridLinesVisibility="Horizontal" x:Name="tabela" AutoGenerateColumns="False" ItemsSource="{Binding Path=VrsteLista}" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}"></DataGridTextColumn>
@@ -49,25 +77,29 @@
         </Grid>
         
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     
 
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="0" Content="Obriši" Margin="5 5 2.5 5"/>
-                <Button x:Name="btnEdit"   Click="btnEdit_Click" Grid.Column="1" Content="Izmeni" Margin="2.5 5 2.5 5" />
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Grid.Column="0" Content="Dodaj" Margin="0 0.5 1.5 0.5"/>
 
-                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="2" Content="Otkaži" Margin="2.5 5 5 5" />
+                <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1" Content="Obriši" Margin="1.5 0.5 1.5 0.5"/>
+                <Button x:Name="btnEdit"   Click="btnEdit_Click" Grid.Column="2" Content="Izmeni" Margin="1.5 0.5 1.5 0.5" />
+
+                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="3" Content="Glavni prozor" Margin="1.5 0.5 2 0.5" />
 
             </Grid>
         </Grid>
