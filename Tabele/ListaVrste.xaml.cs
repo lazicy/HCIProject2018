@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -20,7 +21,8 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
     /// <summary>
     /// Interaction logic for ListaVrste.xaml
     /// </summary>
-    public partial class ListaVrste : Window
+   [ContentPropertyAttribute("Items")]
+    public partial class ListaVrste : Window, INotifyPropertyChanged
     {
         public ListaVrste()
         {
@@ -29,13 +31,67 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
             VrsteLista = MainWindow.InstancaKolekcije.Vrste;
             Tipovi = MainWindow.InstancaKolekcije.Tipovi;
             MainWindow.InstanceMW.Hide();
+            
+        }
+       
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        #region propertyChanged 
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
 
+        #endregion
+
+        
+
+        private int _opcijaPretrage;
+        public int OpcijaPretrage
+        {
+            get
+            {
+                return _opcijaPretrage;
+            }
+            set
+            {
+                if (value != _opcijaPretrage)
+                {
+                    _opcijaPretrage = value;
+                    //OnPropertyChanged("OpcijaPretrage");
+                    //Console.WriteLine("Opcija pretrage: " + OpcijaPretrage);
+                }
+            }
+        }
+
+        private ObservableCollection<Vrsta> _vrsteLista;
         public ObservableCollection<Vrsta> VrsteLista
         {
-            get;
-            set;
+            get
+            {
+                return _vrsteLista;
+            }
+            set
+            {
+                if (value != _vrsteLista)
+                {
+                    _vrsteLista = value;
+                    OnPropertyChanged("VrsteLista");
+                }
+            }
         }
+
+        //public ObservableCollection<Vrsta> VrsteLista
+        //{
+        //    get;
+        //    set;
+        //}
 
         public ObservableCollection<Tip> Tipovi
         {
@@ -93,7 +149,15 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
                     break;
                 }
             }
-            
+
+            for (int i = 0; i < VrsteLista.Count; i++)
+            {
+                if (VrsteLista[i].Id.Equals(v.Id))
+                {
+                    VrsteLista.RemoveAt(i);
+                }
+            }
+
         }
 
         private void WindowClosing(object sender, CancelEventArgs e)
@@ -101,5 +165,101 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
             
             MainWindow.InstanceMW.Show();
         }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            ObservableCollection<Vrsta> filter = new ObservableCollection<Vrsta>();
+            if (poljePretrage.Text.Equals(""))
+            {
+                VrsteLista = MainWindow.InstancaKolekcije.Vrste;
+                return;
+            }
+           
+            foreach(Vrsta v in MainWindow.InstancaKolekcije.Vrste)
+            {
+                //Console.WriteLine("Vrsta: " + v.Naziv);
+                //Console.WriteLine("Opcija pretrage: " + OpcijaPretrage);
+                //Console.WriteLine("Polje pretrage: " + poljePretrage.Text.ToLower());
+
+                if ( OpcijaPretrage == 0)
+                {
+                    String all = v.Id.ToLower() + v.Naziv.ToLower() +  v.Tip.Naziv.ToLower() + v.Opis.ToLower() + v.Prihod.ToString() + v.TuristickiStatusStr.ToLower() + v.StatusUgrozenostiStr.ToLower();
+                    if ( all.Contains(poljePretrage.Text.ToLower()))
+                    {
+                        filter.Add(v);
+                        continue;
+                    }
+                }
+
+                if ( OpcijaPretrage == 1)
+                {
+                    if (v.Id.ToLower().Contains(poljePretrage.Text.ToLower()))
+                    {
+                        filter.Add(v);
+                        continue;
+                    }
+                    
+                }
+
+                if (OpcijaPretrage == 2)
+                {
+                    if (v.Naziv.ToLower().Contains(poljePretrage.Text.ToLower()))
+                    {
+                        filter.Add(v);
+                        continue;
+                    }
+
+                }
+
+
+                if (OpcijaPretrage == 3)
+                {
+                    if (v.Opis.ToLower().Contains(poljePretrage.Text.ToLower()))
+                    {
+                        filter.Add(v);
+                        continue;
+                    }
+
+                }
+
+
+                if (OpcijaPretrage == 4)
+                {
+                    if (v.Tip.Naziv.ToLower().Contains(poljePretrage.Text.ToLower()))
+                    {
+                        filter.Add(v);
+                        continue;
+                    }
+
+                }
+
+                if (OpcijaPretrage == 5)
+                {
+                    if (v.Prihod.ToString().ToLower().Contains(poljePretrage.Text.ToLower()))
+                    {
+                        filter.Add(v);
+                        continue;
+                    }
+
+                }
+
+            }
+
+            VrsteLista = filter;
+        }
+
+        private void clearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            poljePretrage.Text = "";
+            TextBox_KeyUp(null, null);
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = HelpProvider.GetHelpKey(this);
+            HelpProvider.ShowHelp(str, this);
+        }
+
     }
 }
+

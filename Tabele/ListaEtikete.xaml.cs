@@ -38,8 +38,8 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Dijalozi.TipDialog tipDialog = new Dijalozi.TipDialog();
-            tipDialog.Show();
+            Dijalozi.EtiketaDialog etiketaDialog= new Dijalozi.EtiketaDialog();
+            etiketaDialog.Show();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -65,6 +65,13 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
         {
             MainWindow.InstanceMW.Show();
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = HelpProvider.GetHelpKey(this);
+            HelpProvider.ShowHelp(str, this);
+        }
+
     }
 }
 

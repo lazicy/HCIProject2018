@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Projects\HCI2018PZ4.3EURA78-2015\HCI2018PZ4.3EURA78-2015\App.xaml
-81182593961
+101334268737
 
-21-877229365
+25765430485
 21112384836
-Button.xaml;Dijalozi\EtiketaDialog.xaml;Dijalozi\TipDialog.xaml;Dijalozi\VrstaDialog.xaml;MainWindow.xaml;Tabele\ListaEtikete.xaml;Tabele\ListaTipovi.xaml;Tabele\ListaVrste.xaml;
+Button.xaml;Dijalozi\EtiketaDialog.xaml;Dijalozi\TipDialog.xaml;Dijalozi\Tutorial.xaml;Dijalozi\VrstaDialog.xaml;Help\HelpViewer.xaml;MainWindow.xaml;Tabele\ListaEtikete.xaml;Tabele\ListaTipovi.xaml;Tabele\ListaVrste.xaml;
 
-False
+True
 

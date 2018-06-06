@@ -63,9 +63,29 @@ namespace HCI2018PZ4._3EURA78_2015.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icondefault {
             get {
                 object obj = ResourceManager.GetObject("icondefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rhinoceros {
+            get {
+                object obj = ResourceManager.GetObject("rhinoceros", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

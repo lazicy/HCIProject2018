@@ -48,6 +48,8 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
             t.Ikonica = editTip.Ikonica;
             t.Naziv = editTip.Naziv;
             t.Opis = editTip.Opis;
+
+            id.IsEnabled = false;
         }
 
 
@@ -67,13 +69,15 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("[TipV]: Id: {0} || Naziv: {1} || Opis: {2} || Ikonica: {3}", t.Id, t.Naziv, t.Opis, t.Ikonica);
-           
+          
+            if (validate())
+            {
             // dodavanjeu glavnu kolekciju tipova
             MainWindow.InstancaKolekcije.Tipovi.Add(t);
             MainWindow.InstancaKolekcije.PrintTipova();
             this.Close();
 
+            }
 
 
         }
@@ -101,44 +105,129 @@ namespace HCI2018PZ4._3EURA78_2015.Dijalozi
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
-            editTip.Id = t.Id;
-            editTip.Naziv = t.Naziv;
-            editTip.Opis = t.Opis;
-            editTip.Ikonica = t.Ikonica;
-
-            for (int i = 0; i<MainWindow.InstancaKolekcije.Vrste.Count; i++)
+            if (validate())
             {
-                if (MainWindow.InstancaKolekcije.Vrste[i].Tip.Id.Equals(editTip.Id))
-                { 
-                    MainWindow.InstancaKolekcije.Vrste[i].Ikonica = editTip.Ikonica;
-                }
-            }
 
-            for (int i = 0; i < MainWindow.InstancaKolekcije.ListaVrste.Count; i++)
-            {
-                if (MainWindow.InstancaKolekcije.ListaVrste[i].Tip.Id.Equals(editTip.Id))
+
+                editTip.Id = t.Id;
+                editTip.Naziv = t.Naziv;
+                editTip.Opis = t.Opis;
+                editTip.Ikonica = t.Ikonica;
+
+                for (int i = 0; i < MainWindow.InstancaKolekcije.Vrste.Count; i++)
                 {
-                    MainWindow.InstancaKolekcije.ListaVrste[i].Ikonica = editTip.Ikonica;
+                    if (MainWindow.InstancaKolekcije.Vrste[i].Tip.Id.Equals(editTip.Id))
+                    {
+                        MainWindow.InstancaKolekcije.Vrste[i].Ikonica = editTip.Ikonica;
+                    }
                 }
-            }
 
-            for (int i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
-            {
-
-                if (MainWindow.InstancaKolekcije.MapaVrste[i].V.Tip.Id.Equals(editTip.Id))
+                for (int i = 0; i < MainWindow.InstancaKolekcije.ListaVrste.Count; i++)
                 {
-                    MainWindow.InstancaKolekcije.MapaVrste[i].V.Ikonica = editTip.Ikonica;
+                    if (MainWindow.InstancaKolekcije.ListaVrste[i].Tip.Id.Equals(editTip.Id))
+                    {
+                        MainWindow.InstancaKolekcije.ListaVrste[i].Ikonica = editTip.Ikonica;
+                    }
                 }
+
+                for (int i = 0; i < MainWindow.InstancaKolekcije.MapaVrste.Count; i++)
+                {
+
+                    if (MainWindow.InstancaKolekcije.MapaVrste[i].V.Tip.Id.Equals(editTip.Id))
+                    {
+                        MainWindow.InstancaKolekcije.MapaVrste[i].V.Ikonica = editTip.Ikonica;
+                    }
+                }
+
+                MainWindow.InstanceMW.canvasMapa_RemoveIkonice();
+                MainWindow.InstanceMW.canvasMapa_AddIkonice();
+
+
+                this.Close();
             }
-
-            MainWindow.InstanceMW.canvasMapa_RemoveIkonice();
-            MainWindow.InstanceMW.canvasMapa_AddIkonice();
-
-            
-            this.Close();
-
 
         }
+
+        private bool validate()
+        {
+            bool retVal = true;
+            if (id.Text.Trim().Equals(""))
+            {
+                id_LostFocus(null, null);
+                retVal = false;
+            }
+
+            if (naziv.Text.Trim().Equals(""))
+            {
+                naziv_LostFocus(null, null);
+                retVal = false;
+            }
+            return retVal;
+        }
+
+        private void id_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (id.Text.Trim().Equals(""))
+            {
+                id.BorderBrush = System.Windows.Media.Brushes.Red;
+                idLabel.Foreground = System.Windows.Media.Brushes.OrangeRed;
+                btnAdd.IsEnabled = false;
+                return;
+            }
+
+            idLabel.Text = "Oznaka tipa: ";
+            idLabel.ClearValue(TextBox.ForegroundProperty);
+            id.ClearValue(TextBox.BorderBrushProperty);
+            btnAdd.IsEnabled = true;
+
+        }
+
+        private void id_KeyUp(object sender, KeyEventArgs e)
+        {
+            foreach (Tip t in MainWindow.InstancaKolekcije.Tipovi)
+            {
+                if (t.Id.Trim().Equals(id.Text.Trim()))
+                {
+                    id.BorderBrush = System.Windows.Media.Brushes.OrangeRed;
+                    idLabel.Text = "Uneta oznaka je zauzeta. Unesite novu oznaku: ";
+                    idLabel.Foreground = System.Windows.Media.Brushes.OrangeRed;
+                    btnAdd.IsEnabled = false;
+                    return;
+                }
+            }
+            btnAdd.IsEnabled = true;
+            idLabel.Text = "Oznaka tipa: ";
+            idLabel.ClearValue(TextBox.ForegroundProperty);
+        }
+
+
+        private void naziv_LostFocus(object sender, RoutedEventArgs e)
+        {
+            btnAdd.IsEnabled = true;
+            nazivLabel.ClearValue(TextBox.ForegroundProperty);
+            naziv.ClearValue(TextBox.BorderBrushProperty);
+            if (naziv.Text.Trim().Equals(""))
+            {
+                naziv.BorderBrush = System.Windows.Media.Brushes.Red;
+                nazivLabel.Foreground = System.Windows.Media.Brushes.OrangeRed;
+                btnAdd.IsEnabled = false;
+                return;
+            }
+
+        }
+
+        private void naziv_GotFocus(object sender, RoutedEventArgs e)
+        {
+            btnAdd.IsEnabled = true;
+            nazivLabel.ClearValue(TextBox.ForegroundProperty);
+            naziv.ClearValue(TextBox.BorderBrushProperty);
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = HelpProvider.GetHelpKey(this);
+            HelpProvider.ShowHelp(str, this);
+        }
+
     }
 }

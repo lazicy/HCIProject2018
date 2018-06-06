@@ -66,14 +66,18 @@ namespace HCI2018PZ4._3EURA78_2015.Model
         private string _opis;
         private Tip _tip;
         private int _statusUgrozenosti;
+        private string _statusUgrozenostiStr;
         private string _ikonica;
        // private BitmapImage _ikonicaView;
         private bool _opasnaPoLjude;
         private bool _listaIUCN;
         private bool _naseljeniRegion;
         private int _turistickiStatus;
+        private String _turistickiStatusStr;
+
         private double _prihod;
-        private DateTime _datumOtkrivanja = System.DateTime.Today;
+        private DateTime _datumOtkrivanja = System.DateTime.Today.Date;
+        
         private ObservableCollection<Etiketa> _dodeljeneEtikete = new ObservableCollection<Etiketa>();
         private bool _customIcon;
 
@@ -97,6 +101,8 @@ namespace HCI2018PZ4._3EURA78_2015.Model
 
             }
         }
+
+        
 
         public string Id
         {
@@ -191,10 +197,56 @@ namespace HCI2018PZ4._3EURA78_2015.Model
             }
             set
             {
+                   
+
                 if (value != _statusUgrozenosti)
                 {
                     _statusUgrozenosti = value;
                     OnPropertyChanged("StatusUgrozenosti");
+                }
+            }
+        }
+
+        public string StatusUgrozenostiStr
+        {
+            get
+            {
+
+                if (StatusUgrozenosti == 1)
+                {
+                    StatusUgrozenostiStr = "Kritično ugrožena";
+                }
+                else if (StatusUgrozenosti == 2)
+                {
+                    StatusUgrozenostiStr = "Ugrožena";
+                }
+                else if (StatusUgrozenosti == 3)
+                {
+                    StatusUgrozenostiStr = "Ranjiva";
+                }
+                else if (StatusUgrozenosti == 4)
+                {
+                    StatusUgrozenostiStr = "Zavisna od očuvanja staništa";
+                }
+                else if (StatusUgrozenosti == 5)
+                {
+                    StatusUgrozenostiStr = "Blizu rizika";
+                }
+                else if (StatusUgrozenosti == 6)
+                {
+                    StatusUgrozenostiStr = "Najmanjeg rizika";
+                }
+                else
+                {
+                    StatusUgrozenostiStr = "";
+                }
+                return _statusUgrozenostiStr;
+            }
+            set {
+                if (value != _statusUgrozenostiStr)
+                {
+                    _statusUgrozenostiStr = value;
+                    OnPropertyChanged("StatusUgrozenostiStr");
                 }
             }
         }
@@ -268,6 +320,7 @@ namespace HCI2018PZ4._3EURA78_2015.Model
         {
             get
             {
+               
                 return _turistickiStatus;
             }
             set
@@ -276,6 +329,37 @@ namespace HCI2018PZ4._3EURA78_2015.Model
                 {
                     _turistickiStatus = value;
                     OnPropertyChanged("TuristickiStatus");
+                }
+            }
+        }
+
+        public String TuristickiStatusStr
+        {
+            get
+            {
+                if (TuristickiStatus == 1)
+                {
+                    TuristickiStatusStr = "Izolovana";
+                }
+                else if (TuristickiStatus == 2)
+                {
+                    TuristickiStatusStr = "Delimično habituirana";
+                }
+                else if (TuristickiStatus == 3)
+                {
+                    TuristickiStatusStr = "Habituirana";
+                } else
+                {
+                    TuristickiStatusStr = "";
+                }
+                return _turistickiStatusStr;
+            }
+            set
+            {
+                if (value != _turistickiStatusStr)
+                {
+                    _turistickiStatusStr = value;
+                    OnPropertyChanged("TuristickiStatusStr");
                 }
             }
         }

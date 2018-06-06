@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Tabele"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="ListaVrste" Height="506" Width="900" WindowStartupLocation="CenterScreen">
-
+        Title="Tabelarni prikaz vrsta" Height="506" Width="900" WindowStartupLocation="CenterScreen"
+         Icon="pack://application:,,,/Images/mainicon.png"
+        xmlns:namespace="clr-namespace:HCI2018PZ4._3EURA78_2015"
+         namespace:HelpProvider.HelpKey="vrstetabela"
+            
+        >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -21,24 +28,29 @@
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
 
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" VerticalAlignment="Center"  FontWeight="DemiBold"
                        Foreground="White" Margin="6 0 0 0">Pretraga:</TextBlock>
 
-            <ComboBox x:Name="combo" VerticalAlignment="Center" Grid.Column="1" >
-                <ComboBoxItem x:Name="sve">Sva polja</ComboBoxItem>
-                <ComboBoxItem x:Name="oznaka">Oznaka</ComboBoxItem>
-                <ComboBoxItem x:Name="naziv">Naziv</ComboBoxItem>
-                <ComboBoxItem x:Name="tip">Tip</ComboBoxItem>
-                <ComboBoxItem x:Name="prihod">Prihod</ComboBoxItem>
+            <ComboBox x:Name="combo" VerticalAlignment="Center" Grid.Column="1" SelectedIndex="{Binding OpcijaPretrage}">
+                <ComboBoxItem> Sva polja</ComboBoxItem>
+                <ComboBoxItem> Oznaka</ComboBoxItem>
+                <ComboBoxItem>Naziv</ComboBoxItem>
+                <ComboBoxItem>Opis</ComboBoxItem>
+                <ComboBoxItem>Tip</ComboBoxItem>
+                <ComboBoxItem>Prihod od turizma</ComboBoxItem>
+
             </ComboBox>
+
 
             <!--<ComboBox Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding Path=Tipovi}"  DisplayMemberPath="Naziv" >
                 
             </ComboBox>-->
-            <TextBox Grid.Column="2" VerticalAlignment="Center" Height="20" Margin="10 0 5 0"></TextBox>
+            <TextBox x:Name="poljePretrage"  Grid.Column="2" VerticalAlignment="Center" Height="20" Margin="10 0 5 0" KeyUp="TextBox_KeyUp"></TextBox>
+            <Button x:Name="clearFilter" Click="clearFilter_Click"  Grid.Column="3" Grid.Row="0" Style="{StaticResource ClearButton}" Margin="5 2 0 0" HorizontalAlignment="Left"/>
             
         </Grid>
         <Grid Grid.Row="1">
@@ -46,16 +58,15 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Naziv" FontWeight="SemiBold" Binding="{Binding Naziv}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip" Binding="{Binding Tip.Naziv}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Status ugroženosti" Binding="{Binding StatusUgrozenosti}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Status ugroženosti" Binding="{Binding StatusUgrozenosti}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Status ugroženosti" Binding="{Binding StatusUgrozenostiStr}"></DataGridTextColumn>
                     <DataGridCheckBoxColumn  Header="Opasna po ljude" Binding="{Binding OpasnaPoLjude}"></DataGridCheckBoxColumn>
                     <DataGridCheckBoxColumn  Header="IUCN Lista" Binding="{Binding ListaIUCN}"></DataGridCheckBoxColumn>
                     <DataGridCheckBoxColumn  Header="Naseljeni region" Binding="{Binding NaseljeniRegion}"></DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="Turistički status" Binding="{Binding TuristickiStatus}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Turistički status" Binding="{Binding TuristickiStatusStr}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Prihod" Binding="{Binding Prihod}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Datum otkrivanja" Binding="{Binding DatumOtkrivanja}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Datum otkrivanja" Binding="{Binding DatumOtkrivanja.Date}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="Ikonica">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -64,7 +75,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridComboBoxColumn Header="Etikete"></DataGridComboBoxColumn>
+                    
 
                 </DataGrid.Columns>    
                 

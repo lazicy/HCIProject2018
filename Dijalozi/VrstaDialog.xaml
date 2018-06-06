@@ -6,9 +6,13 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Dijalozi"
         mc:Ignorable="d"
-        Title="Napravi novu vrstu" Height="630" Width="420" ResizeMode="CanResize" >
-
-
+        Title="Napravi novu vrstu" Height="630" Width="420" ResizeMode="CanResize"  
+         Icon="pack://application:,,,/Images/mainicon.png"
+        xmlns:namespace="clr-namespace:HCI2018PZ4._3EURA78_2015"
+         namespace:HelpProvider.HelpKey="dijalogvrsta" >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Border Padding="13">
 
         <Grid>
@@ -25,12 +29,12 @@
                 <StackPanel>
                    
                     <!-- Oznaka -->
-                    <TextBlock Text="Oznaka vrste:" FontWeight="Bold"/>
-                    <TextBox Name="id" Text="{Binding Path=Id}"  Padding="2" Margin="0 2 0 0"/>
+                    <TextBlock Name="idLabel" Text="Oznaka vrste:" FontWeight="Bold"/>
+                    <TextBox Name="id" Text="{Binding Path=Id}"  Padding="2" Margin="0 2 0 0" LostFocus="id_LostFocus" KeyUp="id_KeyUp"/>
 
                     <!-- Naziv-->
-                    <TextBlock Text="Naziv:" Margin=" 0 5 0 0"/>
-                    <TextBox Name="naziv" Text="{Binding Path=Naziv}" Padding="2" Margin="0 2 0 0"/>
+                    <TextBlock Name="nazivLabel" Text="Naziv:" Margin=" 0 5 0 0"/>
+                    <TextBox Name="naziv" Text="{Binding Path=Naziv}" Padding="2" Margin="0 2 0 0" LostFocus="naziv_LostFocus" GotFocus="naziv_GotFocus"/>
 
                     <!-- Opis -->
                     <TextBlock Text="Opis:" Margin=" 0 5 0 0"/>
@@ -38,10 +42,10 @@
 
                     <!-- Tip, Ikonica -->
                     <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                        <TextBlock Text="Tip:" Margin="0 3 10 0"/>
+                        <TextBlock Name="tipLabel" Text="Tip:" Margin="0 3 10 0"/>
 
                         <ComboBox x:Name="tip" ItemsSource="{Binding Path=Tipovi}" SelectedItem="{Binding Path=Tip}" 
-                                  IsTextSearchEnabled="True" DisplayMemberPath="Naziv" Margin="0 0 10 0" Width="177"/>
+                                  IsTextSearchEnabled="True" DisplayMemberPath="Naziv" Margin="0 0 10 0" Width="177" LostFocus="tip_LostFocus"/>
 
                         <TextBlock Text="Ikonica:" Margin="0 4 10 0"/>
                     
@@ -56,9 +60,9 @@
                     </StackPanel>
 
                     <!-- Status ugrozenosti -->
-                    <TextBlock Text="Status ugroženosti:" Margin="0 15 0 0"/>
-                    <ComboBox Name="statusUgr" Margin="0 2 0 0" SelectedIndex="{Binding Path=StatusUgrozenosti}"
-                              MinWidth="378"  HorizontalAlignment="Left">
+                    <TextBlock Name="statusUgrLabel" Text="Status ugroženosti:" Margin="0 15 0 0"/>
+                    <ComboBox Name="statusUgr" Margin="0 2 0 0" SelectedIndex="{Binding StatusUgrozenosti}"
+                              MinWidth="378"  HorizontalAlignment="Left" LostFocus="statusUgr_LostFocus">
                         <ComboBoxItem ></ComboBoxItem>
                         <ComboBoxItem >Kritično ugrožena</ComboBoxItem>
                         <ComboBoxItem>Ugrožena</ComboBoxItem>
@@ -78,8 +82,8 @@
                     </StackPanel>
                     
                     <!-- Turisticki status -->
-                    <TextBlock Text="Turistički status:"  Margin="0 10 0 0"/>
-                    <ComboBox Margin="0 2 0 0" SelectedIndex="{Binding Path=TuristickiStatus}" Width="378" HorizontalAlignment="Left">
+                    <TextBlock Name="turistickiStatusLabel" Text="Turistički status:"  Margin="0 10 0 0"/>
+                    <ComboBox Name="turistickiStatus" Margin="0 2 0 0" SelectedIndex="{Binding Path=TuristickiStatus}" Width="378" HorizontalAlignment="Left" LostFocus="turistickiStatus_LostFocus">
                         <ComboBoxItem></ComboBoxItem>
                         <ComboBoxItem>Izolovana</ComboBoxItem>
                         <ComboBoxItem>Delimično habituirana</ComboBoxItem>

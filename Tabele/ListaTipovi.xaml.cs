@@ -66,6 +66,13 @@ namespace HCI2018PZ4._3EURA78_2015.Tabele
 
             MainWindow.InstanceMW.Show();
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = HelpProvider.GetHelpKey(this);
+            HelpProvider.ShowHelp(str, this);
+        }
+
     }
 }
 

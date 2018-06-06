@@ -127,7 +127,18 @@ namespace HCI2018PZ4._3EURA78_2015.Model
                 }
             }
         }
-        
+
+        public static void Sacuvaj(String path)
+        {
+           
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    var Xml = new XmlSerializer(typeof(Kolekcije));
+                    Xml.Serialize(stream, MainWindow.InstancaKolekcije);
+                }
+            
+        }
+
         public static void Ucitaj()
         {
             OpenFileDialog openDialog = new OpenFileDialog();
@@ -168,6 +179,45 @@ namespace HCI2018PZ4._3EURA78_2015.Model
 
 
                 }
+            }
+        }
+
+
+        public static void Ucitaj(String path)
+        {
+
+
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                MainWindow.InstanceMW.canvasMapa_RemoveIkonice();
+                var Xml = new XmlSerializer(typeof(Kolekcije));
+                Kolekcije ucitanaKolekcija = (Kolekcije)Xml.Deserialize(stream);
+
+                MainWindow.InstancaKolekcije.ListaVrste.Clear();
+                for (int i = 0; i < ucitanaKolekcija.ListaVrste.Count; i++)
+                {
+                    MainWindow.InstancaKolekcije.ListaVrste.Add(ucitanaKolekcija.ListaVrste[i]);
+                }
+
+                MainWindow.InstancaKolekcije.Vrste.Clear();
+                for (int i = 0; i < ucitanaKolekcija.Vrste.Count; i++)
+                {
+                    MainWindow.InstancaKolekcije.Vrste.Add(ucitanaKolekcija.Vrste[i]);
+                }
+
+                MainWindow.InstancaKolekcije.Tipovi.Clear();
+                for (int i = 0; i < ucitanaKolekcija.Tipovi.Count; i++)
+                {
+                    MainWindow.InstancaKolekcije.Tipovi.Add(ucitanaKolekcija.Tipovi[i]);
+                }
+
+                MainWindow.InstancaKolekcije.MapaVrste.Clear();
+                for (int i = 0; i < ucitanaKolekcija.MapaVrste.Count; i++)
+                {
+                    MainWindow.InstancaKolekcije.MapaVrste.Add(ucitanaKolekcija.MapaVrste[i]);
+                }
+                MainWindow.InstanceMW.canvasMapa_AddIkonice();
+
             }
         }
 

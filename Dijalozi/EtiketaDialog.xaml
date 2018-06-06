@@ -5,7 +5,12 @@
         
         xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Dijalozi"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="Napravi novu etiketu" Height="280" Width="420" ResizeMode="CanResize">
+         Icon="pack://application:,,,/Images/mainicon.png"
+        Title="Napravi novu etiketu" Height="280" Width="420" ResizeMode="CanResize" xmlns:namespace="clr-namespace:HCI2018PZ4._3EURA78_2015"
+         namespace:HelpProvider.HelpKey="dijalogetiketa" >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Border Padding="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -16,11 +21,11 @@
             <Grid Grid.Row="0">
                 <StackPanel>
                     
-                    <TextBlock FontWeight="Bold">Oznaka etikete:</TextBlock>
-                    <TextBox Name="id" Text="{Binding Path=Id}" Padding="2" Margin="0 2 0 0"></TextBox>
+                    <TextBlock Name="idLabel" FontWeight="Bold">Oznaka etikete:</TextBlock>
+                    <TextBox Name="id" Text="{Binding Path=Id}" Padding="2" Margin="0 2 0 0" LostFocus="id_LostFocus" KeyUp="id_KeyUp"></TextBox>
                      
-                    <TextBlock Text="Boja:" Margin="0 5 0 0"/>
-                    <xctk:ColorPicker SelectedColor="{Binding Path=Boja}" Name="colorPicker" ></xctk:ColorPicker>
+                    <TextBlock Name="bojaLabel" Text="Boja:" Margin="0 5 0 0"/>
+                    <xctk:ColorPicker SelectedColor="{Binding Path=Boja}" Name="colorPicker" LostFocus="colorPicker_LostFocus"></xctk:ColorPicker>
 
                     <!--- 
                     <ComboBox Margin="0 2 0 0">

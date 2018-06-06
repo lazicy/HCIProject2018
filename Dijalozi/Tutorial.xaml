@@ -1,0 +1,135 @@
+﻿<Window x:Class="HCI2018PZ4._3EURA78_2015.Dijalozi.Tutorial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI2018PZ4._3EURA78_2015.Dijalozi"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+         Icon="pack://application:,,,/Images/mainicon.png"
+        WindowStartupLocation="CenterScreen"
+        Title="Tutorial"  Height="280" Width="550" ResizeMode="CanResize">
+    
+        <TabControl Name="tabs">
+            <TabItem>
+            
+                <Grid Background="#170825">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition />
+
+                     </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="26" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom">Tutorial:</TextBlock>
+
+                    <TextBlock Grid.Row="1" FontSize="29" FontWeight="DemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top">Kako dodati novu etiketu?</TextBlock>
+                    <Button Grid.Row="2" x:Name="btnTutorialStart" Click="btnTutorialStart_Click" VerticalAlignment="Top" Margin="5 0 0 0" Style="{StaticResource TutorialLargeButton}">
+                        
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem>
+            <Border Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="330"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="22"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <StackPanel>
+
+                                <TextBlock Name="idLabel" FontWeight="Bold">Oznaka etikete:</TextBlock>
+                                <TextBox Name="id" Text="{Binding Path=Id}" Padding="2" Margin="0 2 0 0" KeyUp="id_KeyUp" ></TextBox>
+
+                                <TextBlock Name="bojaLabel" Text="Boja:" Margin="0 5 0 0"/>
+                                <xctk:ColorPicker SelectedColor="{Binding Path=Boja}" Name="colorPicker" GotFocus="colorPicker_GotFocus" ></xctk:ColorPicker>
+
+                                <!--- 
+                        <ComboBox Margin="0 2 0 0">
+                        
+                            <ComboBoxItem FontWeight="Bold" Background="Red" Foreground="White">Crvena</ComboBoxItem>
+                            <ComboBoxItem FontWeight="Bold" Background="Orange" Foreground="White">Narandžasta</ComboBoxItem>
+                            <ComboBoxItem FontWeight="Bold" Background="Yellow" Foreground="DarkGray">Žuta</ComboBoxItem>
+                            <ComboBoxItem FontWeight="Bold" Background="Green" Foreground="White">Zelena</ComboBoxItem>
+                            <ComboBoxItem FontWeight="Bold" Background="Blue" Foreground="White">Plava</ComboBoxItem>
+                            <ComboBoxItem FontWeight="Bold" Background="Purple" Foreground="White">Ljubičasta</ComboBoxItem>
+
+                        
+                        </ComboBox>
+    -->
+                                <TextBlock Margin="0 5 0 0" >Opis:</TextBlock>
+                                <TextBox Name="opis" Text="{Binding Path=Opis}" Padding="2" Margin="0 2 0 0" Height="80"></TextBox>
+
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+
+                        <!-- Buttons -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" FlowDirection="RightToLeft">
+
+
+                            <Grid Width="230" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition />
+
+                                </Grid.ColumnDefinitions>
+
+
+
+                                <Button Grid.Column="2" x:Name="btnNazad" Click="btnNazad_Click" Margin="0 0 0 0" Width="70">Nazad</Button>
+
+                                <Button Grid.Column="1" x:Name="btnDalje" Click="btnDalje_Click" Margin="0 0 0 0" Width="70">Dalje</Button>
+                                <Button Grid.Column="1" x:Name="btnAdd"  Click="btnAdd_Click"  Background="Azure" Margin="0 0 0 0" Width="70 ">Završetak</Button>
+                                <Button Grid.Column="0" x:Name="btnCancel" Click="btnCancel_Click"  Margin="0 0 1 0" Width="70">Otkaži</Button>
+
+
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+
+                        
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" x:Name="kec" Margin="10 10 0 0">
+                            <TextBlock TextWrapping="Wrap" Foreground="#13072d" FontStyle="Italic" FontWeight="DemiBold">Obavezno polje za unos ljudski čitljive oznake.</TextBlock>
+                            
+                        </Grid>
+                        <Grid Grid.Row="1" x:Name="dvojka" Margin="10 5 0 0">
+                            <TextBlock TextWrapping="Wrap" Foreground="#13072d" FontStyle="Italic" FontWeight="DemiBold">Obavezan odabir boje etikete pomoću podmenija sa paletom.</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="2" x:Name="trojka"  Margin="10 10 0 0">
+                            <TextBlock TextWrapping="Wrap" Foreground="#13072d" FontStyle="Italic" FontWeight="DemiBold">Opciono polje za unos opisa prethodno definisane etikete.</TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="3" x:Name="cetvorka" Margin="10 10 0 0">
+                            <TextBlock TextWrapping="Wrap" Foreground="#13072d" FontStyle="Italic" FontWeight="DemiBold">Završetak tutoriala.</TextBlock>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </TabItem>
+        
+
+        </TabControl>
+    
+
+</Window>

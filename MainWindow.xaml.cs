@@ -37,13 +37,18 @@ namespace HCI2018PZ4._3EURA78_2015
             
             this.DataContext = this;
             InstanceMW = this;
-            
-
-            //btnAdd.Source = new BitmapImage(new Uri("pack://application:,,,/Images/addbtn.png"));
-            
-            mapaImg.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/map.jpg"));
+               
+            mapaImg.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/map.png"));
             startPoint = new Point();
-                
+               
+            try
+            {
+                Kolekcije.Ucitaj("C:/Projects/HCI2018PZ4.3EURA78-2015/HCI2018PZ4.3EURA78-2015/dataTest.xml");
+
+            } catch(Exception e)
+            {
+
+            }
         }
 
 
@@ -57,11 +62,23 @@ namespace HCI2018PZ4._3EURA78_2015
             }
         }
 
-        //private ObservableCollection<Vrsta> _vrstaListe;
-        public static ObservableCollection<Vrsta> VrstaListe
+        
+
+        private ObservableCollection<Vrsta> _vrstaListe;
+        public ObservableCollection<Vrsta> VrstaListe
         {
-            get;
-            set;
+            get
+            {
+                return _vrstaListe;
+            }
+            set
+            {
+                if (value != _vrstaListe)
+                {
+                    _vrstaListe = value;
+                    OnPropertyChanged("VrstaListe");
+                }
+            }
         }
 
         public static MainWindow MainWindowInstance
@@ -105,6 +122,13 @@ namespace HCI2018PZ4._3EURA78_2015
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             Model.Kolekcije.Ucitaj();
+        }
+
+        private void btnTutorial_Click(object sender, RoutedEventArgs e)
+        {
+
+            Dijalozi.Tutorial tutorialDialog = new Dijalozi.Tutorial();
+            tutorialDialog.Show();
         }
 
         private void VrstaLisa_Click(object sender, RoutedEventArgs e)
@@ -189,6 +213,7 @@ namespace HCI2018PZ4._3EURA78_2015
                 Vrsta v = e.Data.GetData("myFormat") as Vrsta;
 
                 MainWindow.InstancaKolekcije.ListaVrste.Remove(v);
+                VrstaListe.Remove(v);
                 Image ikonica = new Image();
                 ikonica.Height = 30;
                 ikonica.Width = 30;
@@ -390,5 +415,44 @@ namespace HCI2018PZ4._3EURA78_2015
         {
 
         }
+
+        private void poljePretrage_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+            ObservableCollection<Vrsta> filter = new ObservableCollection<Vrsta>();
+            if (poljePretrage.Text.Equals(""))
+            {
+                VrstaListe = MainWindow.InstancaKolekcije.ListaVrste;
+                return;
+            }
+
+            foreach (Vrsta v in MainWindow.InstancaKolekcije.ListaVrste)
+            {
+                //Console.WriteLine("Vrsta: " + v.Naziv);
+                //Console.WriteLine("Polje pretrage: " + poljePretrage.Text.ToLower());
+
+                   
+                String all = v.Id.ToLower() + v.Naziv.ToLower();
+                if (all.Contains(poljePretrage.Text.ToLower()))
+                {
+                    filter.Add(v);
+                    continue;
+                }
+                    
+
+            }
+
+            VrstaListe = filter;
+            
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string str = HelpProvider.GetHelpKey(this);
+            HelpProvider.ShowHelp(str, this);
+        }
+
+
+
     }
 }
